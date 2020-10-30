@@ -80,7 +80,7 @@
                   >
                     Close
                   </v-btn>
-                  <v-dialog
+                  <!-- <v-dialog
                     v-model="dialog"
                     width="500"
                   >
@@ -114,14 +114,19 @@
                         </v-btn>
                       </v-card-actions>
                     </v-card>
-                  </v-dialog>
-                  <!-- <v-btn
+                  </v-dialog> -->
+                  <v-btn
                     color="blue darken-1"
                     text
                     @click="dialog1 = false; login(); validate ();"
                   >
-                    Sign In
-                  </v-btn> -->
+                    <nuxt-link
+                      to="/"
+                      style="text-decoration: none;"
+                    >
+                      Login
+                    </nuxt-link>
+                  </v-btn>
                 </v-card-actions>
               </v-card>
             </v-dialog>
@@ -237,9 +242,10 @@
           </v-row>
         </div>
         <div v-if="log == true">
-          <div align="center" justify="center">
-            {{ n }}{{ name }}{{ lastname }}
-          </div>
+          <v-row align="center" justify="center">
+            {{ n }}
+            {{ $store.getters.currentUser[0].name }}{{ $store.getters.currentUser[0].lastname }}
+          </v-row>
           <nuxt-link
             to="/"
             style="text-decoration: none;"
@@ -250,7 +256,7 @@
               block
               v-bind="attrs"
               v-on="on"
-              @click="log=false; typeDuty=0"
+              @click="log=false; typeDuty=0;logout ()"
             >
               <v-icon>mdi-lock-open</v-icon>
               Logout
@@ -316,9 +322,12 @@
 
 <script>
 import firebase from 'firebase/app'
-import { mapGetters } from 'vuex'
+import { store } from '~/store/index'
 import { db } from '~/plugins/firebaseConfig.js'
 export default {
+  store,
+  components: {
+  },
   data () {
     return {
       on: null,
@@ -384,15 +393,17 @@ export default {
           icon: 'mdi-chart-bubble',
           title: 'ข้อมูลพนักงาน',
           to: '/dataEmployee'
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'ข้อมูลห้อง',
+          to: '/dataRoom'
         }
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false
     }
-  },
-  computed: {
-    ...mapGetters(['data'])
   },
   methods: {
     validate () {
@@ -410,31 +421,38 @@ export default {
       })
     },
     login () {
-      db.collection('MyRegister').where('email', '==', this.user).where('password', '==', this.pass)
+      db.collection('MyRegister')
+        .where('email', '==', this.user)
+        .where('password', '==', this.pass)
         .onSnapshot((querySnapshot) => {
           const data = []
-          const dataln = []
           querySnapshot.forEach((doc) => {
-            data.push(doc.data().name)
-            dataln.push(doc.data().lastname)
-            console.log(doc.data())
+            data.push(doc.data())
+            // console.log(doc.data())
             this.log = true
             this.typeDuty = 0
+            const payload = data
+            this.$store.dispatch('setUser', payload)
+            console.log(payload)
           })
           this.name = data.toString()
-          this.lastname = dataln.toString()
         })
-      db.collection('Employee').where('email', '==', this.user).where('password', '==', this.pass)
+      db.collection('Employee')
+        .where('email', '==', this.user)
+        .where('password', '==', this.pass)
         .onSnapshot((querySnapshot) => {
           const data = []
           querySnapshot.forEach((doc) => {
             data.push(doc.data().nameEm)
-            console.log(doc.data())
+            // console.log(doc.data())
             this.log = true
             this.typeDuty = 1
           })
           this.n = data.toString()
         })
+    },
+    logout () {
+      this.$store.dispatch('logout')
     },
     addData () {
       // เก็บข้อมูล Form ใน collection MyForm ( มี 1 document แต่จะ update ข้อมูลเรื่อย ๆ )

@@ -17,108 +17,180 @@
         </v-carousel>
       </template>
     </template>
-    <v-card-text class="headline font-weight-bold">
+    <v-card-text class="headline text-left font-weight-black">
       ดีลักซ์ วิลลา (Deluxe Villa)
     </v-card-text>
-    <v-card-text class=" text-left headline font-weight-bold">
-      จุดเด่น
-    </v-card-text>
-    <v-card-text>
-      <p class="text-left">
-        ขนาดห้อง: 185 ตารางเมตร |
-        วิว: สวน  |
-        ระเบียง/ชานเรือน  |
-        ห้องปลอดบุหรี่  |
-        ห้องอาบน้ำฝักบัวและอ่างอาบน้ำแยกกัน  |
-        ครัวขนาดเล็ก
-      </p>
-    </v-card-text>
-    <v-card-text class=" text-left headline font-weight-bold">
-      ห้องน้ำและอุปกรณ์ในห้องน้ำ
-    </v-card-text>
-    <v-card-text>
-      <p class="text-left ">
-        กระจก  |
-        ของใช้ในห้องน้ำ  |
-        ไดร์เป่าผม  |
-        ผ้าเช็ดตัว  |
-        เสื้อคลุมอาบน้ำ  |
-        อ่างน้ำวน
-      </p>
-    </v-card-text>
-    <v-card-text class=" text-left headline font-weight-bold">
-      สิ่งอำนวยความสะดวก
-    </v-card-text>
-    <v-card-text>
-      <p class="text-left">
-        เครื่องปรับอากาศ  |
-        นาฬิกาปลุก  |
-        บริการโทรปลุก  |
-        พัดลม  |
-        รองเท้าแตะใส่ในห้องพัก  |
-        หนังสือพิมพ์รายวัน
-      </p>
-    </v-card-text>
-    <v-card-text class=" text-left headline font-weight-bold">
-      อาหาร เครื่องดื่ม ของว่าง
-    </v-card-text>
-    <v-card-text>
-      <p class="text-left">
-        เครื่องชงกาแฟ/ชา |
-        ตู้เย็น |
-        น้ำดื่มบรรจุขวด (ฟรี)  |
-        มินิบาร์  |
-        ไมโครเวฟ
-      </p>
-    </v-card-text>
-    <v-card-text class=" text-left headline font-weight-bold">
-      บริการและสิ่งอำนวยความสะดวก
-    </v-card-text>
-    <v-card-text>
-      <p class="text-left">
-        บริการทำความสะอาดรายวัน
-      </p>
-    </v-card-text>
-    <v-card-text class=" text-left headline font-weight-bold">
-      แผนผังและเฟอร์นิเจอร์
-    </v-card-text>
-    <v-card-text>
-      <p class="text-left">
-        โต๊ะทำงาน  |
-        พื้นที่นั่งเล่น
-      </p>
-    </v-card-text>
-    <v-card-text class=" text-left headline font-weight-bold">
-      เครื่องแต่งกายและการซักรีด
-    </v-card-text>
-    <v-card-text>
-      <p class="text-left">
-        ตู้เสื้อผ้า  |
-        อุปกรณ์สำหรับรีดผ้า
-      </p>
-    </v-card-text>
-    <v-card-text class=" text-left headline font-weight-bold">
-      ความปลอดภัย
-    </v-card-text>
-    <v-card-text>
-      <p class="text-left">
-        ตู้เซฟในห้องพัก
-      </p>
-    </v-card-text>
-    <nuxt-link to="/booking">
-      <v-btn
-        depressed
-        color="primary"
-      >
-        จอง
-      </v-btn>
-    </nuxt-link>
+    <v-row justify="space-around ">
+      <v-card class="ma-2" width="300">
+        <div class="headline font-weight-bold">
+          จุดเด่น
+        </div>
+        <div>
+          ◆ ขนาดห้อง: 185 ตารางเมตร
+        </div>
+        <div>
+          ◆ วิว: สวน
+        </div>
+        <div>
+          ◆ ระเบียง/ชานเรือน
+        </div>
+        <div>
+          ◆ ห้องปลอดบุหรี่
+        </div>
+        <div>
+          ◆ ห้องอาบน้ำฝักบัวและอ่างอาบน้ำแยกกัน
+        </div>
+        <div>
+          ◆ ครัวขนาดเล็ก
+        </div>
+      </v-card>
+      <v-card class="ma-2" width="300">
+        <div class="headline font-weight-bold">
+          ห้องน้ำและอุปกรณ์ในห้องน้ำ
+        </div>
+        <div>
+          ◆ กระจก
+        </div>
+        <div>
+          ◆ ของใช้ในห้องน้ำ
+        </div>
+        <div>
+          ◆ ไดร์เป่าผม
+        </div>
+        <div>
+          ◆ ผ้าเช็ดตัว
+        </div>
+        <div>
+          ◆ เสื้อคลุมอาบน้ำ
+        </div>
+        <div>
+          ◆ อ่างน้ำวน
+        </div>
+      </v-card>
+      <v-card class="ma-2" width="300">
+        <div class="headline font-weight-bold">
+          สิ่งอำนวยความสะดวก
+        </div>
+        <div>
+          ◆ เครื่องปรับอากาศ
+        </div>
+        <div>
+          ◆ นาฬิกาปลุก
+        </div>
+        <div>
+          ◆ บริการโทรปลุก
+        </div>
+        <div>
+          ◆ พัดลม
+        </div>
+        <div>
+          ◆ รองเท้าแตะใส่ในห้องพัก
+        </div>
+        <div>
+          ◆ หนังสือพิมพ์รายวัน
+        </div>
+      </v-card>
+    </v-row>
+
+    <v-row justify="space-around ">
+      <v-card class="ma-2" width="300">
+        <div class="headline font-weight-bold">
+          อาหาร เครื่องดื่ม ของว่าง
+        </div>
+        <div>
+          ◆ เครื่องชงกาแฟ/ชา
+        </div>
+        <div>
+          ◆ ตู้เย็น
+        </div>
+        <div>
+          ◆ น้ำดื่มบรรจุขวด (ฟรี)
+        </div>
+        <div>
+          ◆ มินิบาร์
+        </div>
+        <div>
+          ◆ ไมโครเวฟ
+        </div>
+      </v-card>
+      <v-card class="ma-2" width="300">
+        <div class="headline font-weight-bold">
+          บริการและสิ่งอำนวยความสะดวก
+        </div>
+        <div>
+          ◆ บริการทำความสะอาดรายวัน
+        </div>
+      </v-card>
+      <v-card class="ma-2" width="300">
+        <div class="headline font-weight-bold">
+          แผนผังและเฟอร์นิเจอร์
+        </div>
+        <div>
+          ◆ โต๊ะทำงาน
+        </div>
+        <div>
+          ◆ พื้นที่นั่งเล่น
+        </div>
+      </v-card>
+    </v-row>
+
+    <v-row justify="space-around ">
+      <v-card class="ma-2" width="300">
+        <div class="headline font-weight-bold">
+          แผนผังและเฟอร์นิเจอร์
+        </div>
+        <div>
+          ◆ โต๊ะทำงาน
+        </div>
+        <div>
+          ◆ พื้นที่นั่งเล่น
+        </div>
+        <div>
+          ◆ เฟอร์นิเจอร์
+        </div>
+      </v-card>
+      <v-card class="ma-2" width="300">
+        <div class="headline font-weight-bold">
+          เครื่องแต่งกายและการซักรีด
+        </div>
+        <div>
+          ◆ ตู้เสื้อผ้า
+        </div>
+        <div>
+          ◆ อุปกรณ์สำหรับรีดผ้า
+        </div>
+      </v-card>
+      <v-card class="ma-2" width="300">
+        <div class="headline font-weight-bold">
+          ความปลอดภัย
+        </div>
+        <div>
+          ◆ ตู้เซฟในห้องพัก
+        </div>
+        <div>
+          ◆ Key Card ประจำห้อง
+        </div>
+      </v-card>
+    </v-row>
+    <div class="text-center mt-5">
+      <nuxt-link to="/booking">
+        <v-btn
+          v-if="log == true"
+          depressed
+          block
+          color="primary"
+        >
+          Book
+        </v-btn>
+      </nuxt-link>
+    </div>
   </v-card>
 </template>
 <script>
 export default {
   data () {
     return {
+      log: this.$store.getters.log,
       items: [
         {
           src: 'https://pix6.agoda.net/hotelImages/483/48357/48357_14021315140018332012.jpg'

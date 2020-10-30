@@ -13,6 +13,7 @@
     <v-data-table
       :headers="headers"
       :items="textList"
+      :itemsen="textList"
       sort-by="calories"
       class="elevation-1"
       :search="search"
@@ -21,7 +22,7 @@
         <v-toolbar
           flat
         >
-          <v-toolbar-title>พนักงาน</v-toolbar-title>
+          <v-toolbar-title>Room</v-toolbar-title>
           <v-divider
             class="mx-4"
             inset
@@ -57,8 +58,8 @@
                       md="6"
                     >
                       <v-text-field
-                        v-model="editedItem.nameEm"
-                        label="Name"
+                        v-model="editedItem.roomnum"
+                        label="RoomNumber"
                       />
                     </v-col>
                     <v-col
@@ -67,9 +68,9 @@
                       md="6"
                     >
                       <v-select
-                        v-model="editedItem.duty"
+                        v-model="editedItem.type"
                         :items="items"
-                        label="Duty"
+                        label="Type"
                       />
                     </v-col>
                   </v-row>
@@ -80,8 +81,8 @@
                       md="6"
                     >
                       <v-text-field
-                        v-model="editedItem.email"
-                        label="email"
+                        v-model="editedItem.price"
+                        label="price"
                       />
                     </v-col>
                     <v-col
@@ -89,9 +90,10 @@
                       sm="6"
                       md="6"
                     >
-                      <v-text-field
-                        v-model="editedItem.password"
-                        label="password"
+                      <v-select
+                        v-model="editedItem.status"
+                        :items="itemsen"
+                        label="status"
                       />
                     </v-col>
                   </v-row>
@@ -159,6 +161,22 @@
           Reset
         </v-btn>
       </template>
+      <template v-slot:item.type="{ item }">
+        <v-chip
+          :color="getColor(item.type)"
+          dark
+        >
+          {{ item.type }}
+        </v-chip>
+      </template>
+      <template v-slot:item.status="{ item }">
+        <v-chip
+          :color="getColors(item.status)"
+          dark
+        >
+          {{ item.status }}
+        </v-chip>
+      </template>
     </v-data-table>
   </v-card>
 </template>
@@ -170,37 +188,41 @@ export default {
     dialog: false,
     dialogDelete: false,
     search: '',
+    type: '',
     headers: [
       {
-        text: 'Name',
+        text: 'RoomNumber',
         align: 'start',
         sortable: false,
-        value: 'nameEm'
+        value: 'roomnum'
       },
-      { text: 'duty', value: 'duty' },
-      { text: 'email', value: 'email' },
-      { text: 'password', value: 'password' },
+      { text: 'Type', value: 'type' },
+      { text: 'Price', value: 'price' },
+      { text: 'Status', value: 'status' },
 
       { text: 'Actions', value: 'actions', sortable: false }
     ],
     textList: [],
     editedIndex: -1,
     editedItem: {
-      nameEm: '',
-      duty: '',
-      email: '',
-      password: ''
+      roomnum: '',
+      type: '',
+      price: '',
+      status: ''
     },
     defaultItem: {
-      nameEm: '',
-      duty: '',
-      email: '',
-      password: ''
+      roomnum: '',
+      type: '',
+      price: '',
+      status: ''
     },
     items: [
-      'Admin',
-      'ผู้จัดการ',
-      'พนักงาน'
+      'Best Room',
+      'Normal Room'
+    ],
+    itemsen: [
+      'ห้องไม่ว่าง',
+      'ห้องว่าง'
     ],
     e: ''
   }),
@@ -230,6 +252,14 @@ export default {
       this.textList = []
     },
 
+    getColor (type) {
+      if (type === 'Best Room') { return 'orange' } else if (type === 'Normal Room') { return 'blue' }
+    },
+
+    getColors (status) {
+      if (status === 'ห้องไม่ว่าง') { return 'red' } else if (status === 'ห้องว่าง') { return 'blue' }
+    },
+
     editItem (item) {
       this.editedIndex = this.textList.indexOf(item)
       this.editedItem = Object.assign({}, item)
@@ -244,14 +274,14 @@ export default {
 
     deleteItemConfirm () {
       this.textList.splice(this.editedIndex, 1)
-      const em = (this.textList[this.editedIndex], this.editedItem.nameEm)
+      const em = (this.textList[this.editedIndex], this.editedItem.roomnum)
       const data = []
-      db.collection('Employee').where('nameEm', '==', em).orderBy('timestamp').onSnapshot((querySnapshot) => {
+      db.collection('Room').where('roomnum', '==', em).orderBy('timestamp').onSnapshot((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           data.push(doc.id)
           this.e = data.toString()
           console.log(this.e)
-          db.collection('Employee').doc(this.e).delete()
+          db.collection('Room').doc(this.e).delete()
         })
       })
       this.closeDelete()
@@ -270,6 +300,28 @@ export default {
         this.editedIndex = -1
       })
     },
+    // save () {
+    //   if (this.editedIndex > -1) {
+    //     Object.assign(this.textList[this.editedIndex], this.editedItem)
+    //   } else {
+    //     this.textList.push(this.editedItem)
+    //     const dataText = {
+    //       roomnum: this.editedItem.roomnum,
+    //       type: this.editedItem.type,
+    //       price: this.editedItem.price,
+    //       status: this.editedItem.status,
+    //       timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    //     }
+    //     db.collection('Room').doc().set(dataText)
+    //       .then(function () {
+    //         console.log('Document successfully written! -> MyRegister')
+    //       })
+    //       .catch(function (error) {
+    //         console.error('Error writing document: ', error)
+    //       })
+    //   }
+    //   this.close()
+    // },
     save () {
       if (this.editedIndex > -1) {
         Object.assign(this.textList[this.editedIndex], this.editedItem)
@@ -293,7 +345,7 @@ export default {
       this.close()
     },
     getData () {
-      db.collection('Employee').orderBy('timestamp').onSnapshot((querySnapshot) => {
+      db.collection('Room').orderBy('timestamp').onSnapshot((querySnapshot) => {
         const data = []
         querySnapshot.forEach((doc) => {
           data.push(doc.data())

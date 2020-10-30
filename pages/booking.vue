@@ -1,184 +1,200 @@
 <template>
-  <v-form v-model="valid">
-    <v-container>
-      <v-card>
-        <h1 align="center">
-          จองห้องพัก
-        </h1>
-        <v-row align="center" justify="center">
-          <v-col cols="12" md="3">
-            <v-text-field
-              v-model="name"
-              :rules="rules"
-              hide-details="auto"
-              label="ชื่อ*"
-              required
-            />
-          </v-col>
-          <v-col cols="12" md="3">
-            <v-text-field
-              v-model="lastname"
-              :rules="rules"
-              hide-details="auto"
-              label="นามสกุล*"
-              required
-            />
-          </v-col>
-        </v-row>
-        <v-row align="center" justify="center">
-          <v-col cols="12" md="3">
-            <v-text-field
-              v-model="email"
-              type="email"
-              :rules="rules"
-              hide-details="auto"
-              label="E-mail*"
-            />
-          </v-col>
-          <v-col cols="12" md="3">
-            <v-text-field
-              v-model="tel"
-              type="tel"
-              :rules="rules"
-              hide-details="auto"
-              label="Tel*"
-            />
-          </v-col>
-        </v-row>
-        <v-row align="center" justify="center">
-          <v-col cols="12" md="3">
-            <v-menu
-              v-model="menu1"
-              :close-on-content-click="false"
-              :nudge-right="40"
-              transition="scale-transition"
-              offset-y
-              min-width="290px"
+  <v-container>
+    <v-form v-model="valid">
+      <v-row align="center" justify="center">
+        <v-card>
+          <h1 align="center">
+            ข้อมูล
+          </h1>
+          <v-container>
+            <v-col
+              cols="12"
+              sm="12"
             >
-              <template v-slot:activator="{ on, attrs }">
-                <v-text-field
-                  v-model="checkin"
-                  label="Check In Date"
-                  prepend-icon="mdi-calendar"
-                  readonly
-                  v-bind="attrs"
-                  v-on="on"
-                />
-              </template>
-              <v-date-picker
-                v-model="checkin"
-                @input="menu1 = false"
+              <v-textarea
+                class="mx-2"
+                label="Name"
+                rows="1"
+                prepend-icon="mdi-account"
               />
-            </v-menu>
-          </v-col>
-          <v-col cols="12" md="3">
-            <v-menu
-              v-model="menu2"
-              :close-on-content-click="false"
-              :nudge-right="40"
-              transition="scale-transition"
-              offset-y
-              min-width="290px"
+            </v-col>
+            <v-col
+              cols="12"
+              sm="12"
             >
-              <template v-slot:activator="{ on, attrs }">
-                <v-text-field
-                  v-model="checkout"
-                  label="Check Out Date"
-                  prepend-icon="mdi-calendar"
-                  readonly
-                  v-bind="attrs"
-                  v-on="on"
-                />
-              </template>
-              <v-date-picker
-                v-model="checkout"
-                @input="menu2 = false"
+              <v-textarea
+                class="mx-2"
+                label="LastName"
+                rows="1"
+                prepend-icon="mdi-account"
               />
-            </v-menu>
-          </v-col>
-        </v-row>
-        <v-row align="center" justify="center">
-          <v-col cols="12" md="3">
-            <v-text-field
-              v-model="sumroom"
-              type="number"
-              :rules="rules"
-              label="จำนวนห้อง*"
-              required
-            />
-          </v-col>
-          <v-col cols="12" md="3">
-            <v-text-field
-              v-model="sumperson"
-              type="number"
-              :rules="rules"
-              label="จำนวนผู้เข้าพัก*"
-              required
-            />
-          </v-col>
-        </v-row>
-        <v-row align="center" justify="center">
-          <v-dialog
-            v-model="dialog"
-            width="500"
-          >
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                color="success"
-                dark
-                v-bind="attrs"
-                v-on="on"
-                @click="addData"
-              >
-                SUBMIT
-              </v-btn>
-            </template>
+            </v-col>
+            <v-col
+              cols="12"
+              sm="12"
+            >
+              <v-textarea
+                class="mx-2"
+                label="Email"
+                rows="1"
+                prepend-icon="mdi-email"
+              />
+            </v-col>
+          </v-container>
+        </v-card>
 
-            <v-card v-if="(name != null & lastname != null & email != null & sumroom != null & sumperson != null)">
-              <v-card-title class="headline">
-                Successfully
-              </v-card-title>
-              <v-card-actions>
-                <v-spacer />
-                <nuxt-link to="payment">
+        <v-card class="ma-3">
+          <h1 align="center">
+            จองห้องพัก
+          </h1>
+          <v-row justify="center">
+            <v-col cols="12" md="3">
+              <v-menu
+                v-model="menu1"
+                :close-on-content-click="false"
+                :nudge-right="40"
+                transition="scale-transition"
+                offset-y
+                min-width="290px"
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-text-field
+                    v-model="checkin"
+                    label="Check In Date"
+                    prepend-icon="mdi-calendar"
+                    readonly
+                    v-bind="attrs"
+                    v-on="on"
+                  />
+                </template>
+                <v-date-picker
+                  v-model="checkin"
+                  @input="menu1 = false"
+                />
+              </v-menu>
+            </v-col>
+            <v-col cols="12" md="3">
+              <v-menu
+                v-model="menu2"
+                :close-on-content-click="false"
+                :nudge-right="40"
+                transition="scale-transition"
+                offset-y
+                min-width="290px"
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-text-field
+                    v-model="checkout"
+                    label="Check Out Date"
+                    prepend-icon="mdi-calendar"
+                    readonly
+                    v-bind="attrs"
+                    v-on="on"
+                  />
+                </template>
+                <v-date-picker
+                  v-model="checkout"
+                  @input="menu2 = false"
+                />
+              </v-menu>
+            </v-col>
+          </v-row>
+          <v-row align="center" justify="center">
+            <v-col cols="12" md="3">
+              <v-text-field
+                v-model="sumroom"
+                type="number"
+                :rules="rules"
+                label="จำนวนห้อง*"
+                required
+              />
+            </v-col>
+            <v-col cols="12" md="3">
+              <v-text-field
+                v-model="sumperson"
+                type="number"
+                :rules="rules"
+                label="จำนวนผู้เข้าพัก*"
+                required
+              />
+            </v-col>
+          </v-row>
+          <v-row align="center" justify="center">
+            <v-col cols="12" md="3">
+              <v-text-field
+                v-model="tel"
+                type="tel"
+                :rules="rules"
+                hide-details="auto"
+                label="Tel*"
+              />
+            </v-col>
+          </v-row>
+          <v-row align="center" justify="center">
+            <v-dialog
+              v-model="dialog"
+              width="500"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  color="primary"
+                  dark
+                  v-bind="attrs"
+                  v-on="on"
+                  @click="addData"
+                >
+                  SUBMIT
+                </v-btn>
+              </template>
+
+              <v-card v-if="(name != null & lastname != null & email != null & sumroom != null & sumperson != null)">
+                <v-card-title class="headline">
+                  Successfully
+                </v-card-title>
+                <v-card-actions>
+                  <v-spacer />
+                  <nuxt-link to="payment">
+                    <v-btn
+                      color="primary"
+                      text
+                      @click="dialog = false"
+                    >
+                      ยืนยัน
+                    </v-btn>
+                  </nuxt-link>
+                </v-card-actions>
+              </v-card>
+              <v-card v-if="(name == null || lastname == null || email == null || sumroom == null || sumperson == null)">
+                <v-card-title class="headline">
+                  ข้อมูลไม่ถูกต้อง
+                </v-card-title>
+                <v-card-actions>
+                  <v-spacer />
                   <v-btn
-                    color="primary"
+                    color="error"
                     text
                     @click="dialog = false"
                   >
                     ยืนยัน
                   </v-btn>
-                </nuxt-link>
-              </v-card-actions>
-            </v-card>
-            <v-card v-if="(name == null || lastname == null || email == null || sumroom == null || sumperson == null)">
-              <v-card-title class="headline">
-                ข้อมูลไม่ถูกต้อง
-              </v-card-title>
-              <v-card-actions>
-                <v-spacer />
-                <v-btn
-                  color="error"
-                  text
-                  @click="dialog = false"
-                >
-                  ยืนยัน
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+          </v-row>
+          <br>
+        </v-card>
+        <v-row>
+        <!-- <CollectionText /> -->
         </v-row>
-        <br>
-      </v-card>
-      <!-- <CollectionText /> -->
-    </v-container>
-  </v-form>
+      </v-row>
+    </v-form>
+  </v-container>
 </template>
 
 <script>
 import firebase from 'firebase/app'
 import { mapGetters } from 'vuex'
-import { db } from '~/plugins/firebaseConfig.js'
+import { db } from '~/plugins/firebaseConfig'
 export default {
   // components: {
   //   CollectionText
