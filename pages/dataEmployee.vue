@@ -136,7 +136,7 @@
           </v-dialog>
         </v-toolbar>
       </template>
-      <template v-slot:item.actions="{ item }">
+      <template v-slot:[`item.actions`]="{ item }">
         <v-icon
           small
           class="mr-2"
@@ -272,7 +272,20 @@ export default {
     },
     save () {
       if (this.editedIndex > -1) {
-        Object.assign(this.textList[this.editedIndex], this.editedItem)
+        const edit = (this.textList[this.editedIndex], this.editedItem)
+        const em = (this.textList[this.editedIndex], this.editedItem.nameEm)
+        const data = []
+        db.collection('Employee')
+          .where('nameEm', '==', em)
+          .orderBy('timestamp')
+          .onSnapshot((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              data.push(doc.id)
+              this.e = data.toString()
+              console.log(this.e)
+              db.collection('Employee').doc(this.e).update(edit)
+            })
+          })
       } else {
         this.textList.push(this.editedItem)
         const dataText = {

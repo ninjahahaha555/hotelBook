@@ -257,7 +257,7 @@ export default {
     },
 
     getColors (status) {
-      if (status === 'ห้องไม่ว่าง') { return 'red' } else if (status === 'ห้องว่าง') { return 'blue' }
+      if (status === 'ห้องไม่ว่าง') { return 'red' } else if (status === 'ห้องว่าง') { return 'green' }
     },
 
     editItem (item) {
@@ -300,41 +300,34 @@ export default {
         this.editedIndex = -1
       })
     },
-    // save () {
-    //   if (this.editedIndex > -1) {
-    //     Object.assign(this.textList[this.editedIndex], this.editedItem)
-    //   } else {
-    //     this.textList.push(this.editedItem)
-    //     const dataText = {
-    //       roomnum: this.editedItem.roomnum,
-    //       type: this.editedItem.type,
-    //       price: this.editedItem.price,
-    //       status: this.editedItem.status,
-    //       timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    //     }
-    //     db.collection('Room').doc().set(dataText)
-    //       .then(function () {
-    //         console.log('Document successfully written! -> MyRegister')
-    //       })
-    //       .catch(function (error) {
-    //         console.error('Error writing document: ', error)
-    //       })
-    //   }
-    //   this.close()
-    // },
     save () {
       if (this.editedIndex > -1) {
-        Object.assign(this.textList[this.editedIndex], this.editedItem)
+        const edit = (this.textList[this.editedIndex], this.editedItem)
+        const roomNum = (this.textList[this.editedIndex], this.editedItem.roomnum)
+        const typ = (this.textList[this.editedIndex], this.editedItem.type)
+        const data = []
+        db.collection('Room')
+          .where('roomnum', '==', roomNum)
+          .where('type', '==', typ)
+          .orderBy('timestamp')
+          .onSnapshot((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              data.push(doc.id)
+              this.e = data.toString()
+              console.log(this.e)
+              db.collection('Room').doc(this.e).update(edit)
+            })
+          })
       } else {
         this.textList.push(this.editedItem)
         const dataText = {
-          nameEm: this.editedItem.nameEm,
-          duty: this.editedItem.duty,
-          email: this.editedItem.email,
-          password: this.editedItem.password,
+          roomnum: this.editedItem.roomnum,
+          type: this.editedItem.type,
+          price: this.editedItem.price,
+          status: this.editedItem.status,
           timestamp: firebase.firestore.FieldValue.serverTimestamp()
         }
-        db.collection('Employee').doc().set(dataText)
+        db.collection('Room').doc().set(dataText)
           .then(function () {
             console.log('Document successfully written! -> MyRegister')
           })

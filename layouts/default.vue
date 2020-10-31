@@ -95,14 +95,11 @@
                         Sign In
                       </v-btn>
                     </template>
-
                     <v-card v-if="log == false">
                       <v-card-title class="headline grey lighten-2">
                         ผิดพลาด ลองใหม่อีกครั้ง
                       </v-card-title>
-
                       <v-divider />
-
                       <v-card-actions>
                         <v-spacer />
                         <v-btn
@@ -243,8 +240,8 @@
         </div>
         <div v-if="log == true">
           <v-row align="center" justify="center">
-            {{ n }}
-            {{ $store.getters.currentUser[0].name }}{{ $store.getters.currentUser[0].lastname }}
+            {{ $store.getters.currentUser[0].nameEm }}
+            {{ $store.getters.currentUser[0].name }} {{ $store.getters.currentUser[0].lastname }}
           </v-row>
           <nuxt-link
             to="/"
@@ -256,7 +253,7 @@
               block
               v-bind="attrs"
               v-on="on"
-              @click="log=false; typeDuty=0;logout ()"
+              @click="typeDuty=2; logout()"
             >
               <v-icon>mdi-lock-open</v-icon>
               Logout
@@ -296,6 +293,22 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+      <v-list v-if="typeDuty == 2">
+        <v-list-item
+          v-for="(item, i) in items2"
+          :key="i"
+          :to="item.to"
+          router
+          exact
+        >
+          <v-list-item-action>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title v-text="item.title" />
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
     </v-navigation-drawer>
     <v-app-bar
       dark
@@ -304,10 +317,32 @@
       fixed
       app
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-card-title>
-        Lesur Hotel
-      </v-card-title>
+      <template>
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+        <h1>Hostel</h1>
+        <v-tabs align-with-title>
+          <v-tab>
+            <nuxt-link
+              to="/"
+              style="text-decoration: none;"
+              class="white--text"
+            >
+              หน้าหลัก
+            </nuxt-link>
+          </v-tab>
+          <v-tab>
+            <nuxt-link
+              to="payment"
+              style="text-decoration: none;"
+              class="white--text"
+            >
+              ชำระเงิน
+            </nuxt-link>
+          </v-tab>
+          <v-tab>แผนที่</v-tab>
+          <v-tab>ติดต่อ</v-tab>
+        </v-tabs>
+      </template>
 
       <v-toolbar-title v-text="title" />
       <v-spacer />
@@ -355,8 +390,14 @@ export default {
       name: null,
       lastname: null,
       age: null,
-      typeDuty: 0,
+      typeDuty: 2,
       title: null,
+      items2: [{
+        icon: 'mdi-city',
+        title: 'Welcome',
+        to: '/'
+      }
+      ],
       items1: [{
         icon: 'mdi-city',
         title: 'Welcome',
@@ -443,16 +484,42 @@ export default {
         .onSnapshot((querySnapshot) => {
           const data = []
           querySnapshot.forEach((doc) => {
-            data.push(doc.data().nameEm)
+            data.push(doc.data())
             // console.log(doc.data())
             this.log = true
             this.typeDuty = 1
+            const payload = data
+            this.$store.dispatch('setUser', payload)
+            console.log(payload)
           })
           this.n = data.toString()
         })
     },
     logout () {
-      this.$store.dispatch('logout')
+      db.collection('MyRegister')
+        .where('email', '==', this.$store.getters.currentUser[0].email)
+        .where('password', '==', this.$store.getters.currentUser[0].password)
+        .onSnapshot((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            // console.log(doc.data())
+            this.log = false
+            const out = null
+            this.$store.dispatch('logingOut', out)
+            console.log(out)
+          })
+        })
+      db.collection('Employee')
+        .where('email', '==', this.user)
+        .where('password', '==', this.pass)
+        .onSnapshot((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            // console.log(doc.data())
+            this.log = false
+            const out = null
+            this.$store.dispatch('logingOut', out)
+            console.log(out)
+          })
+        })
     },
     addData () {
       // เก็บข้อมูล Form ใน collection MyForm ( มี 1 document แต่จะ update ข้อมูลเรื่อย ๆ )
@@ -478,7 +545,6 @@ export default {
       this.getData()
     },
     reset () {
-
     }
   }
 }

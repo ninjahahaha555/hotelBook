@@ -15,9 +15,9 @@ export const store = new Vuex.Store({
       state.currentUser = payload
       state.log = true
     },
-    logingOut: (state) => {
+    logingOut: (state, { out }) => {
       state.log = false
-      state.currentUser = [{ name: '' }, { lastname: '' }, { email: '' }, { password: '' }, { age: '' }]
+      state.currentUser = out
     }
   },
 
@@ -25,8 +25,8 @@ export const store = new Vuex.Store({
     setUser ({ commit }, payload) {
       commit('setUser', { payload })
     },
-    logingOut ({ commit }) {
-      commit('logingOut')
+    logingOut ({ commit }, out) {
+      commit('logingOut', { out })
     }
   },
 

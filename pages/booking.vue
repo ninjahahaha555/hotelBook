@@ -12,6 +12,7 @@
               sm="12"
             >
               <v-textarea
+                v-model="name"
                 class="mx-2"
                 label="Name"
                 rows="1"
@@ -23,6 +24,7 @@
               sm="12"
             >
               <v-textarea
+                v-model="lastname"
                 class="mx-2"
                 label="LastName"
                 rows="1"
@@ -34,6 +36,7 @@
               sm="12"
             >
               <v-textarea
+                v-model="email"
                 class="mx-2"
                 label="Email"
                 rows="1"
@@ -48,7 +51,7 @@
             จองห้องพัก
           </h1>
           <v-row justify="center">
-            <v-col cols="12" md="3">
+            <v-col cols="12" md="5">
               <v-menu
                 v-model="menu1"
                 :close-on-content-click="false"
@@ -73,7 +76,7 @@
                 />
               </v-menu>
             </v-col>
-            <v-col cols="12" md="3">
+            <v-col cols="12" md="5">
               <v-menu
                 v-model="menu2"
                 :close-on-content-click="false"
@@ -100,7 +103,7 @@
             </v-col>
           </v-row>
           <v-row align="center" justify="center">
-            <v-col cols="12" md="3">
+            <v-col cols="12" md="5">
               <v-text-field
                 v-model="sumroom"
                 type="number"
@@ -109,7 +112,7 @@
                 required
               />
             </v-col>
-            <v-col cols="12" md="3">
+            <v-col cols="12" md="5">
               <v-text-field
                 v-model="sumperson"
                 type="number"
@@ -120,7 +123,7 @@
             </v-col>
           </v-row>
           <v-row align="center" justify="center">
-            <v-col cols="12" md="3">
+            <v-col cols="12" md="10">
               <v-text-field
                 v-model="tel"
                 type="tel"
@@ -193,20 +196,18 @@
 
 <script>
 import firebase from 'firebase/app'
-import { mapGetters } from 'vuex'
-import { db } from '~/plugins/firebaseConfig'
+import { store } from '~/store/index'
+import { db } from '~/plugins/firebaseConfig.js'
 export default {
-  // components: {
-  //   CollectionText
-  // },
+  store,
   data () {
     return {
       valid: null,
       menu1: null,
       menu2: null,
-      name: null,
-      lastname: null,
-      email: null,
+      name: this.$store.getters.currentUser[0].name,
+      lastname: this.$store.getters.currentUser[0].lastname,
+      email: this.$store.getters.currentUser[0].email,
       sumroom: null,
       sumperson: null,
       tel: null,
@@ -219,10 +220,6 @@ export default {
       dialog: false
     }
   },
-  computed: {
-    ...mapGetters(['data'])
-  },
-
   methods: {
     addData () {
       // เก็บข้อมูล Form ใน collection MyForm ( มี 1 document แต่จะ update ข้อมูลเรื่อย ๆ )
