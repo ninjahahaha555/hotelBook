@@ -10,7 +10,7 @@
         </v-card-text>
         <v-card-text>
           <p class="text-left font-weight-black">
-            เตียง 2 เตียง ห้องน้ำ 1 ห้อง จำนวนห้อง 11 ห้อง
+            เตียง 2 เตียง ห้องน้ำ 1 ห้อง จำนวนห้อง 1 ห้อง
             ราคา 1,800 บาท/คืน
           </p>
         </v-card-text>
@@ -191,6 +191,7 @@
           depressed
           block
           color="primary"
+          @click="submit()"
         >
           Book
         </v-btn>
@@ -199,7 +200,9 @@
   </v-card>
 </template>
 <script>
+import { store } from '~/store/index'
 export default {
+  store,
   data () {
     return {
       log: this.$store.getters.log,
@@ -226,6 +229,14 @@ export default {
           src: 'https://exp.cdn-hotels.com/hotels/2000000/1800000/1795800/1795742/0dc08c6c_z.jpg?impolicy=fcrop&w=773&h=530&q=high'
         }
       ]
+    }
+  },
+  methods: {
+    submit () {
+      const rPrice = 1800
+      this.$store.dispatch('addRoomPrice', rPrice)
+      console.log(rPrice)
+      // {{ $store.getters.roomPrice }}
     }
   }
 }

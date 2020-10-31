@@ -217,6 +217,7 @@ export default {
       status: ''
     },
     items: [
+      'Luxurious Room',
       'Best Room',
       'Normal Room'
     ],
@@ -253,7 +254,7 @@ export default {
     },
 
     getColor (type) {
-      if (type === 'Best Room') { return 'orange' } else if (type === 'Normal Room') { return 'blue' }
+      if (type === 'Best Room') { return 'orange' } else if (type === 'Normal Room') { return 'blue' } else if (type === 'Luxurious Room') { return 'pink' }
     },
 
     getColors (status) {
@@ -304,11 +305,9 @@ export default {
       if (this.editedIndex > -1) {
         const edit = (this.textList[this.editedIndex], this.editedItem)
         const roomNum = (this.textList[this.editedIndex], this.editedItem.roomnum)
-        const typ = (this.textList[this.editedIndex], this.editedItem.type)
         const data = []
         db.collection('Room')
           .where('roomnum', '==', roomNum)
-          .where('type', '==', typ)
           .orderBy('timestamp')
           .onSnapshot((querySnapshot) => {
             querySnapshot.forEach((doc) => {

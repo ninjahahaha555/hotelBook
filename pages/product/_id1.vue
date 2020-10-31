@@ -179,6 +179,7 @@
           depressed
           block
           color="primary"
+          @click="submit()"
         >
           Book
         </v-btn>
@@ -187,7 +188,9 @@
   </v-card>
 </template>
 <script>
+import { store } from '~/store/index'
 export default {
+  store,
   data () {
     return {
       log: this.$store.getters.log,
@@ -208,6 +211,13 @@ export default {
           src: 'https://pix6.agoda.net/hotelImages/483/48357/48357_17020214180050727329.jpg'
         }
       ]
+    }
+  },
+  methods: {
+    submit () {
+      const rPrice = 1500
+      this.$store.dispatch('addRoomPrice', rPrice)
+      console.log(rPrice)
     }
   }
 }

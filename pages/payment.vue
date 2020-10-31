@@ -9,14 +9,12 @@
       <v-card ref="form">
         <v-container>
           <v-row>
+            {{ $store.getters.booking.name }} {{ $store.getters.booking.lastname }}<br>
+            {{ $store.getters.totalPrice }}
             <v-col
               cols="12"
               sm="12"
             >
-              <v-checkbox
-                v-model="checkbox1"
-                :label="`pay on counter`"
-              />
               <v-dialog
                 v-model="dialog1"
                 width="500"
@@ -189,7 +187,7 @@
           <nuxt-link to="/">
             <v-btn
               class="ma-5 mr-4"
-              @click="submit"
+              @click="submit;addData()"
             >
               submit
             </v-btn>
@@ -200,6 +198,7 @@
   </v-row>
 </template>
 <script>
+import { db } from '~/plugins/firebaseConfig.js'
 export default {
   data () {
     return {
@@ -212,6 +211,25 @@ export default {
   methods: {
     submit () {
       this.$refs.observer.validate()
+    },
+    addData () {
+      const dataText = {
+        name: this.$store.getters.booking.name,
+        lastname: this.$store.getters.booking.lastname,
+        email: this.$store.getters.booking.email,
+        checkin: this.$store.getters.booking.checkin,
+        checkout: this.$store.getters.booking.checkout,
+        sumroom: this.$store.getters.booking.sumroom,
+        sumperson: this.$store.getters.booking.sumperson,
+        tel: this.$store.getters.booking.tel
+      }
+      db.collection('confirmBooking').doc().set(dataText)
+        .then(function () {
+          console.log('Document successfully written! -> Booking')
+        })
+        .catch(function (error) {
+          console.error('Error writing document: ', error)
+        })
     }
   }
 }

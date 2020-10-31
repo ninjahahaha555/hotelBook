@@ -7,7 +7,7 @@
       fixed
       app
       dark
-      src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+      src="https://cdn.discordapp.com/attachments/392353546332405763/772107713807253535/6cc169ec33ddfc44ffea98954836d7e1.jpg"
     >
       <v-list>
         <div v-if="log == false">
@@ -45,15 +45,6 @@
                           required
                         />
                       </v-col>
-                      <!-- <v-col cols="12">
-                        <v-text-field
-                          v-model="pass"
-                          :rules="ruless"
-                          label="Password*"
-                          type="password"
-                          required
-                        />
-                      </v-col> -->
                       <v-col cols="12">
                         <v-text-field
                           v-model="pass"
@@ -80,38 +71,6 @@
                   >
                     Close
                   </v-btn>
-                  <!-- <v-dialog
-                    v-model="dialog"
-                    width="500"
-                  >
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-btn
-                        color="primary"
-                        dark
-                        v-bind="attrs"
-                        v-on="on"
-                        @click="login(); validate ();"
-                      >
-                        Sign In
-                      </v-btn>
-                    </template>
-                    <v-card v-if="log == false">
-                      <v-card-title class="headline grey lighten-2">
-                        ผิดพลาด ลองใหม่อีกครั้ง
-                      </v-card-title>
-                      <v-divider />
-                      <v-card-actions>
-                        <v-spacer />
-                        <v-btn
-                          color="error"
-                          text
-                          @click="dialog = false"
-                        >
-                          accept
-                        </v-btn>
-                      </v-card-actions>
-                    </v-card>
-                  </v-dialog> -->
                   <v-btn
                     color="blue darken-1"
                     text
@@ -312,7 +271,7 @@
     </v-navigation-drawer>
     <v-app-bar
       dark
-      src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+      src="https://cdn.discordapp.com/attachments/392353546332405763/772107713807253535/6cc169ec33ddfc44ffea98954836d7e1.jpg"
       :clipped-left="clipped"
       fixed
       app
@@ -340,7 +299,15 @@
             </nuxt-link>
           </v-tab>
           <v-tab>แผนที่</v-tab>
-          <v-tab>ติดต่อ</v-tab>
+          <v-tab>
+            <nuxt-link
+              to="contact"
+              style="text-decoration: none;"
+              class="white--text"
+            >
+              ติดต่อ
+            </nuxt-link>
+          </v-tab>
         </v-tabs>
       </template>
 
@@ -425,11 +392,6 @@ export default {
           title: 'ข้อมูลBooking',
           to: '/dataBook'
         },
-        // {
-        //   icon: 'mdi-chart-bubble',
-        //   title: 'ข้อมูลการเงิน',
-        //   to: '/dataIncome'
-        // },
         {
           icon: 'mdi-chart-bubble',
           title: 'ข้อมูลพนักงาน',
@@ -439,6 +401,11 @@ export default {
           icon: 'mdi-chart-bubble',
           title: 'ข้อมูลห้อง',
           to: '/dataRoom'
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'ข้อมูลรายได้',
+          to: '/dataIncome'
         }
       ],
       miniVariant: false,
@@ -476,7 +443,6 @@ export default {
             this.$store.dispatch('setUser', payload)
             console.log(payload)
           })
-          this.name = data.toString()
         })
       db.collection('Employee')
         .where('email', '==', this.user)
@@ -492,7 +458,6 @@ export default {
             this.$store.dispatch('setUser', payload)
             console.log(payload)
           })
-          this.n = data.toString()
         })
     },
     logout () {

@@ -160,7 +160,8 @@
                     <v-btn
                       color="primary"
                       text
-                      @click="dialog = false"
+                      style="text-decoration: none;"
+                      @click="dialog = false;submit()"
                     >
                       ยืนยัน
                     </v-btn>
@@ -249,6 +250,20 @@ export default {
       this.getData()
     },
     reset () {
+    },
+    submit () {
+      const book = {
+        name: this.name,
+        lastname: this.lastname,
+        email: this.email,
+        checkin: this.checkin,
+        checkout: this.checkout,
+        sumroom: this.sumroom,
+        sumperson: this.sumperson,
+        tel: this.tel
+      }
+      this.$store.dispatch('addBooking', book)
+      console.log(book)
     }
   }
 }
