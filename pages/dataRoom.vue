@@ -217,8 +217,8 @@ export default {
       status: ''
     },
     items: [
-      'Luxurious Room',
-      'Best Room',
+      'Sweet Room',
+      'Deluxe Room',
       'Normal Room'
     ],
     itemsen: [
@@ -254,7 +254,7 @@ export default {
     },
 
     getColor (type) {
-      if (type === 'Best Room') { return 'orange' } else if (type === 'Normal Room') { return 'blue' } else if (type === 'Luxurious Room') { return 'pink' }
+      if (type === 'Deluxe Room') { return 'orange' } else if (type === 'Normal Room') { return 'blue' } else if (type === 'Sweet Room') { return 'pink' }
     },
 
     getColors (status) {

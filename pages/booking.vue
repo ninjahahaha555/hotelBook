@@ -144,7 +144,6 @@
                   dark
                   v-bind="attrs"
                   v-on="on"
-                  @click="addData"
                 >
                   SUBMIT
                 </v-btn>
@@ -159,8 +158,8 @@
                   <nuxt-link to="payment">
                     <v-btn
                       color="primary"
-                      text
                       style="text-decoration: none;"
+                      text
                       @click="dialog = false;submit()"
                     >
                       ยืนยัน
@@ -198,7 +197,7 @@
 <script>
 import firebase from 'firebase/app'
 import { store } from '~/store/index'
-import { db } from '~/plugins/firebaseConfig.js'
+// import { db } from '~/plugins/firebaseConfig.js'
 export default {
   store,
   data () {
@@ -222,30 +221,6 @@ export default {
     }
   },
   methods: {
-    addData () {
-      // เก็บข้อมูล Form ใน collection MyForm ( มี 1 document แต่จะ update ข้อมูลเรื่อย ๆ )
-      if (this.name != null & this.lastname != null & this.email != null & this.sumperson != null & this.sumroom != null) {
-        // เก็บข้อมูล Input Text ใน collection MyText (มีหลาย document ข้อมูลจะเพิ่มขึ้นเรื่อย ๆ )
-        const dataText = {
-          name: this.name,
-          lastname: this.lastname,
-          email: this.email,
-          checkin: this.checkin,
-          checkout: this.checkout,
-          sumroom: this.sumroom,
-          sumperson: this.sumperson,
-          tel: this.tel,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        }
-        db.collection('Booking').doc().set(dataText)
-          .then(function () {
-            console.log('Document successfully written! -> Booking')
-          })
-          .catch(function (error) {
-            console.error('Error writing document: ', error)
-          })
-      }
-    },
     created () {
       this.getData()
     },
@@ -260,7 +235,9 @@ export default {
         checkout: this.checkout,
         sumroom: this.sumroom,
         sumperson: this.sumperson,
-        tel: this.tel
+        tel: this.tel,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        roomType: this.$store.getters.roomPrice.rType
       }
       this.$store.dispatch('addBooking', book)
       console.log(book)

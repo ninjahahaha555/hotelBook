@@ -215,9 +215,12 @@ export default {
   },
   methods: {
     submit () {
-      const rPrice = 1500
-      this.$store.dispatch('addRoomPrice', rPrice)
-      console.log(rPrice)
+      const room = {
+        rPrice: 1500,
+        rType: 'Delux Room'
+      }
+      this.$store.dispatch('addRoomPrice', room)
+      console.log(room)
     }
   }
 }

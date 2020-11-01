@@ -2,18 +2,6 @@
   <v-card>
     <template>
       <template>
-        <v-card-text
-          class=" headline font-weight-black"
-          large
-        >
-          ห้องขนาดกลาง
-        </v-card-text>
-        <v-card-text>
-          <p class="text-left font-weight-black">
-            เตียง 2 เตียง ห้องน้ำ 1 ห้อง จำนวนห้อง 1 ห้อง
-            ราคา 1,800 บาท/คืน
-          </p>
-        </v-card-text>
         <v-carousel
           cycle
           hide-delimiter-background
@@ -30,41 +18,18 @@
       </template>
     </template>
     <v-card-text class="headline text-left font-weight-black">
-      โรงแรมระดับ 4 ดาวพร้อม สระว่ายน้ำกลางแจ้ง และเชื่อมต่อกับศูนย์จัดการประชุม
+      Normal Room
     </v-card-text>
     <v-row justify="space-around ">
-      <v-card class="ma-2" width="300">
-        <div class="headline font-weight-bold">
-          สิ่งอำนวยความสะดวก
-        </div>
-        <div>
-          ◆ ห้องอาหารและ บาร์/เลานจ์
-        </div>
-        <div>
-          ◆ สระว่ายน้ำกลางแจ้ง
-        </div>
-        <div>
-          ◆ มีอาหารเช้าบริการ
-        </div>
-        <div>
-          ◆ รถรับส่งสนามบิน
-        </div>
-        <div>
-          ◆ บริการซักรีด
-        </div>
-        <div>
-          ◆ ครัวขนาดเล็ก
-        </div>
-      </v-card>
       <v-card class="ma-2" width="300">
         <div class="headline font-weight-bold">
           จุดเด่น
         </div>
         <div>
-          ◆ ขนาดห้อง: 220 ตารางเมตร
+          ◆ ขนาดห้อง: 85 ตารางเมตร
         </div>
         <div>
-          ◆ วิว: ธรรมชาติ
+          ◆ วิว: สวน
         </div>
         <div>
           ◆ ระเบียง/ชานเรือน
@@ -74,6 +39,9 @@
         </div>
         <div>
           ◆ ห้องอาบน้ำฝักบัวและอ่างอาบน้ำแยกกัน
+        </div>
+        <div>
+          ◆ ครัวขนาดเล็ก
         </div>
       </v-card>
       <v-card class="ma-2" width="300">
@@ -93,29 +61,38 @@
           ◆ ผ้าเช็ดตัว
         </div>
         <div>
-          ◆ สื้อคลุมอาบน้ำ
+          ◆ เสื้อคลุมอาบน้ำ
+        </div>
+        <div>
+          ◆ อ่างน้ำวน
+        </div>
+      </v-card>
+      <v-card class="ma-2" width="300">
+        <div class="headline font-weight-bold">
+          สิ่งอำนวยความสะดวก
+        </div>
+        <div>
+          ◆ เครื่องปรับอากาศ
+        </div>
+        <div>
+          ◆ นาฬิกาปลุก
+        </div>
+        <div>
+          ◆ บริการโทรปลุก
+        </div>
+        <div>
+          ◆ พัดลม
+        </div>
+        <div>
+          ◆ รองเท้าแตะใส่ในห้องพัก
+        </div>
+        <div>
+          ◆ หนังสือพิมพ์รายวัน
         </div>
       </v-card>
     </v-row>
 
     <v-row justify="space-around ">
-      <v-card class="ma-2" width="300">
-        <div class="headline font-weight-bold">
-          ความบันเทิง
-        </div>
-        <div>
-          ◆ Wi-Fi ทุกห้อง (ฟรี)
-        </div>
-        <div>
-          ◆ เครื่องเล่น Movie
-        </div>
-        <div>
-          ◆ ทรทัศน์ดาวเทียม/เคเบิล
-        </div>
-        <div>
-          ◆ โทรศัพท์
-        </div>
-      </v-card>
       <v-card class="ma-2" width="300">
         <div class="headline font-weight-bold">
           อาหาร เครื่องดื่ม ของว่าง
@@ -142,6 +119,17 @@
         </div>
         <div>
           ◆ บริการทำความสะอาดรายวัน
+        </div>
+      </v-card>
+      <v-card class="ma-2" width="300">
+        <div class="headline font-weight-bold">
+          แผนผังและเฟอร์นิเจอร์
+        </div>
+        <div>
+          ◆ โต๊ะทำงาน
+        </div>
+        <div>
+          ◆ พื้นที่นั่งเล่น
         </div>
       </v-card>
     </v-row>
@@ -208,25 +196,16 @@ export default {
       log: this.$store.getters.log,
       items: [
         {
-          src: 'https://exp.cdn-hotels.com/hotels/2000000/1800000/1795800/1795742/f7eb48e1_z.jpg?impolicy=fcrop&w=773&h=530&q=high'
+          src: 'https://pix6.agoda.net/hotelImages/5881638/-1/cb58feb902e890b68e372691c332925d.jpg?s=1024x768'
         },
         {
-          src: 'https://exp.cdn-hotels.com/hotels/2000000/1800000/1795800/1795742/17213883_z.jpg?impolicy=fcrop&w=773&h=530&q=high'
+          src: 'https://pix6.agoda.net/hotelImages/5881638/-1/7fcf4af4950767b9f761bc48ba077caa.jpg?s=1024x768'
         },
         {
-          src: 'https://exp.cdn-hotels.com/hotels/2000000/1800000/1795800/1795742/e4de84e1_z.jpg?impolicy=fcrop&w=773&h=530&q=high'
+          src: 'https://pix6.agoda.net/hotelImages/5881638/-1/2dd3e79a237a9d7b1822a945c6c9f92e.jpg?s=1024x768'
         },
         {
-          src: 'https://exp.cdn-hotels.com/hotels/2000000/1800000/1795800/1795742/b7ec38df_z.jpg?impolicy=fcrop&w=773&h=530&q=high'
-        },
-        {
-          src: 'https://exp.cdn-hotels.com/hotels/2000000/1800000/1795800/1795742/64521384_z.jpg?impolicy=fcrop&w=773&h=530&q=high'
-        },
-        {
-          src: 'https://exp.cdn-hotels.com/hotels/2000000/1800000/1795800/1795742/bae7886b_z.jpg?impolicy=fcrop&w=773&h=530&q=high'
-        },
-        {
-          src: 'https://exp.cdn-hotels.com/hotels/2000000/1800000/1795800/1795742/0dc08c6c_z.jpg?impolicy=fcrop&w=773&h=530&q=high'
+          src: 'https://pix6.agoda.net/hotelImages/588/5881638/5881638_18103021170069232478.jpg?s=1024x768'
         }
       ]
     }
@@ -234,8 +213,8 @@ export default {
   methods: {
     submit () {
       const room = {
-        rPrice: 1800,
-        rType: 'Sweet Room'
+        rPrice: 1200,
+        rType: 'Normal Room 4'
       }
       this.$store.dispatch('addRoomPrice', room)
       console.log(room)

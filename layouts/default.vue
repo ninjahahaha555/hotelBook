@@ -188,7 +188,7 @@
                   <v-btn
                     color="blue darken-1"
                     text
-                    @click="addData(); dialog2 = false;"
+                    @click="addData();"
                   >
                     Register
                   </v-btn>
@@ -504,6 +504,10 @@ export default {
           .catch(function (error) {
             console.error('Error writing document: ', error)
           })
+        this.dialog2 = false
+      } else {
+        alert('ผิดพลาด')
+        this.dialog2 = true
       }
     },
     created () {

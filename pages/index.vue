@@ -79,7 +79,7 @@
               height="200px"
               src="https://pix6.agoda.net/hotelImages/483/48357/48357_14021315140018332012.jpg"
             />
-            <v-card-title>Deluxe Villa</v-card-title>
+            <v-card-title>Deluxe Room</v-card-title>
 
             <v-card-text class="text--primary">
               <div>
@@ -131,7 +131,7 @@
               height="200px"
               src="https://pix6.agoda.net/hotelImages/2311381/201094626/c89d1ae0a33c68ef82096fb3fef475e3.jpg"
             />
-            <v-card-title>ห้องทั่วไป</v-card-title>
+            <v-card-title>ห้องทั่วไป 1</v-card-title>
 
             <v-card-text class="text--primary">
               <div>
@@ -175,7 +175,7 @@
               height="200px"
               src="https://pix6.agoda.net/hotelImages/108182/-1/0840276ffac37b72ff35e650e875aec9.jpg"
             />
-            <v-card-title>ห้องทั่วไป</v-card-title>
+            <v-card-title>ห้องทั่วไป 2</v-card-title>
 
             <v-card-text class="text--primary">
               <div>
@@ -220,7 +220,7 @@
               height="200px"
               src="https://pix6.agoda.net/hotelImages/108182/-1/f5f9a3e6254f51cad5f7ffe348df7bb0.jpg"
             />
-            <v-card-title>ห้องทั่วไป</v-card-title>
+            <v-card-title>ห้องทั่วไป 3</v-card-title>
 
             <v-card-text class="text--primary">
               <div>Premier Room 2 Twins</div>
@@ -264,9 +264,9 @@
             <v-img
               class="white--text align-end"
               height="200px"
-              src="https://pix6.agoda.net/hotelImages/108182/-1/f5f9a3e6254f51cad5f7ffe348df7bb0.jpg"
+              src="https://pix6.agoda.net/hotelImages/5881638/-1/7fcf4af4950767b9f761bc48ba077caa.jpg?s=1024x768"
             />
-            <v-card-title>ห้องทั่วไป</v-card-title>
+            <v-card-title>ห้องทั่วไป 4</v-card-title>
 
             <v-card-text class="text--primary">
               <div>Premier Room 2 Twins</div>
@@ -288,7 +288,7 @@
                 absolute
                 color="#036358"
               >
-                <nuxt-link :to="{ name: 'product-id7', params: { id: data } }">
+                <nuxt-link :to="{ name: 'product-id8', params: { id: data } }">
                   <v-btn
                     depressed
                     color="primary"
@@ -379,16 +379,22 @@ export default {
     return {
       items: [
         {
-          src: 'https://cdn.discordapp.com/attachments/392353546332405763/771050394276593674/a1.jpg'
-        },
-        {
           src: 'https://cdn.discordapp.com/attachments/392353546332405763/771050187824431144/aaa.jpg'
         },
         {
-          src: 'https://cdn.discordapp.com/attachments/392353546332405763/771050518881370142/a3.jpg'
+          src: 'https://pix6.agoda.net/hotelImages/588/5881638/5881638_18103020490069232000.jpg?s=1024x768'
         },
         {
-          src: 'https://cdn.discordapp.com/attachments/392353546332405763/771050677891891220/a4.png'
+          src: 'https://pix6.agoda.net/hotelImages/5881638/-1/cb58feb902e890b68e372691c332925d.jpg?s=1024x768'
+        },
+        {
+          src: 'https://pix6.agoda.net/hotelImages/5881638/-1/6c4b4908e1e142c2bec7b2430d472b80.jpg?s=1024x768'
+        },
+        {
+          src: 'https://pix6.agoda.net/hotelImages/588/5881638/5881638_18103021280069232648.jpg?s=1024x768'
+        },
+        {
+          src: 'https://pix6.agoda.net/hotelImages/5881638/-1/e8f4f665bbadf253adf33b828b444c87.jpg?s=1024x768'
         }
       ],
       search: null,

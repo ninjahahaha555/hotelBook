@@ -7,8 +7,8 @@ export const store = new Vuex.Store({
   state: {
     currentUser: [{ name: '' }, { lastname: '' }, { email: '' }, { password: '' }, { age: '' }],
     log: false,
-    booking: [{ name: '' }, { lastname: '' }, { email: '' }, { checkin: '' }, { checkout: '' }, { sumroom: '' }, { sumperson: '' }, { tel: '' }],
-    roomPrice: null,
+    booking: [{ name: '' }, { lastname: '' }, { email: '' }, { checkin: '' }, { checkout: '' }, { sumroom: '' }, { sumperson: '' }, { tel: '' }, { timestamp: '' }, { roomType: '' }],
+    roomPrice: [{ rPrice: '' }, { rType: '' }],
     totalPrice: null
   },
 
@@ -21,13 +21,13 @@ export const store = new Vuex.Store({
       state.log = false
       state.currentUser = out
     },
-    addRoomPrice (state, { rPrice }) {
-      state.roomPrice = rPrice
+    addRoomPrice (state, { room }) {
+      state.roomPrice = room
     },
     // this.$store.getters.booking[0].sumroom
     addBooking (state, { book }) {
       state.booking = book
-      state.totalPrice = state.roomPrice * state.booking.sumroom
+      state.totalPrice = state.roomPrice.rPrice * state.booking.sumroom
     }
   },
 
@@ -38,8 +38,8 @@ export const store = new Vuex.Store({
     logingOut ({ commit }, out) {
       commit('logingOut', { out })
     },
-    addRoomPrice ({ commit }, rPrice) {
-      commit('addRoomPrice', { rPrice })
+    addRoomPrice ({ commit }, room) {
+      commit('addRoomPrice', { room })
     },
     addBooking ({ commit }, book) {
       commit('addBooking', { book })

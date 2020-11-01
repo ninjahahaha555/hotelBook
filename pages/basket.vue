@@ -31,14 +31,12 @@ export default {
       searchBook: this.$store.getters.currentUser[0].email,
       headers: [
         {
-          text: 'ชื่อ',
+          text: 'E-mail',
           align: 'start',
           sortable: false,
-          value: 'name'
+          value: 'email'
         },
-        { text: 'นามสกุล', value: 'lastname' },
-        { text: 'E-mail', value: 'email' },
-        { text: 'Tel', value: 'tel' },
+        { text: 'ประเภทห้อง', value: 'roomType' },
         { text: 'วันเช็คอิน', value: 'checkin' },
         { text: 'วันเช็คเอาท์', value: 'checkout' },
         { text: 'จำนวนห้อง', value: 'sumroom' },

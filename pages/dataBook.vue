@@ -207,6 +207,7 @@ export default {
       { text: 'วันเช็คเอาท์', value: 'checkout' },
       { text: 'จำนวนห้อง', value: 'sumroom' },
       { text: 'จำนวนผู้เข้าพัก', value: 'sumperson' },
+      { text: 'ประเภทห้อง', value: 'roomType' },
       { text: 'Actions', value: 'actions', sortable: false }
     ],
     textList: [],
