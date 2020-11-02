@@ -43,7 +43,7 @@
             <v-card-text class="text--primary">
               <div>
                 ห้องขนาดกลาง
-                จำนวนห้องว่าง 2 ห้อง
+                จำนวนห้อง 2 ห้อง
               </div>
               <p class="font-weight-black">
                 ราคา 1,800 บาท/คืน
@@ -87,7 +87,7 @@
             <v-card-text class="text--primary">
               <div>
                 ห้องขนาดกลาง
-                จำนวนห้องว่าง 2 ห้อง
+                จำนวนห้อง 2 ห้อง
                 <p class="font-weight-black">
                   ราคา 1,500 บาท/คืน
                 </p>
@@ -138,7 +138,7 @@
 
             <v-card-text class="text--primary">
               <div>
-                ดีลักซ์ เตียงคิงไซส์ (Deluxe Room 1 King) จำนวนห้องว่าง 1 ห้อง
+                ดีลักซ์ เตียงคิงไซส์ (Deluxe Room 1 King) จำนวนห้อง 1 ห้อง
                 <p class="font-weight-black">
                   ราคา 1,200 บาท/คืน
                 </p>
@@ -183,7 +183,7 @@
             <v-card-text class="text--primary">
               <div>
                 เอ็กเซกคิวทีฟ สวีท เตียงคิงไซส์ (Executive Suite King)
-                จำนวนห้องว่าง 1 ห้อง
+                จำนวนห้อง 1 ห้อง
                 <p class="font-weight-black">
                   ราคา 1,200 บาท/คืน
                 </p>
@@ -230,7 +230,7 @@
 
               <div>
                 Whitsunday Island, Whitsunday Islands
-                จำนวนห้องว่าง 1 ห้อง
+                จำนวนห้อง 1 ห้อง
                 <p class="font-weight-black">
                   ราคา 1,200 บาท/คืน
                 </p>
@@ -276,7 +276,7 @@
 
               <div>
                 Whitsunday Island, Whitsunday Islands
-                จำนวนห้องว่าง 1 ห้อง
+                จำนวนห้อง 1 ห้อง
                 <p class="font-weight-black">
                   ราคา 1,200 บาท/คืน
                 </p>
