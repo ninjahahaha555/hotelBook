@@ -22,7 +22,7 @@
         </template>
         <v-card-text>
           <p class="ml-5">
-            ปรเภทห้อง : {{ $store.getters.booking.roomType }}
+            ประเภทห้อง : {{ $store.getters.booking.roomType }}
           </p>
           <p class="ml-5">
             ราคา : {{ $store.getters.roomPrice.rPrice }}

@@ -445,8 +445,6 @@ export default {
         })
     },
     logout () {
-      this.user = ''
-      this.pass = ''
       db.collection('MyRegister')
         .where('email', '==', this.$store.getters.currentUser[0].email)
         .where('password', '==', this.$store.getters.currentUser[0].password)
