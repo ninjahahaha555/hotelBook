@@ -178,9 +178,41 @@
       </v-card>
     </v-row>
     <div class="text-center mt-5">
+      <v-btn
+        v-if="log == false || s1[0]=='ห้องไม่ว่าง' & s2[0]=='ห้องไม่ว่าง'"
+        depressed
+        block
+        disabled
+        color="primary"
+        @click="submit()"
+      >
+        Book
+      </v-btn>
       <nuxt-link to="/booking">
         <v-btn
-          v-if="log == true"
+          v-if="s1[0]=='ห้องว่าง' & log == true & s2[0]=='ห้องว่าง'"
+          depressed
+          block
+          color="primary"
+          @click="submit()"
+        >
+          Book
+        </v-btn>
+      </nuxt-link>
+      <nuxt-link to="/booking">
+        <v-btn
+          v-if="s1[0]=='ห้องไม่ว่าง' & log == true & s2[0]=='ห้องว่าง'"
+          depressed
+          block
+          color="primary"
+          @click="submit()"
+        >
+          Book
+        </v-btn>
+      </nuxt-link>
+      <nuxt-link to="/booking">
+        <v-btn
+          v-if="s1[0]=='ห้องว่าง' & log == true & s2[0]=='ห้องไม่ว่าง'"
           depressed
           block
           color="primary"
