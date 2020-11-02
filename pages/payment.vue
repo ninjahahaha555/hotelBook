@@ -236,10 +236,9 @@
             </v-dialog>
           </v-col>
         </v-row>
-        <v-form ref="form" v-model="valid" lazy-validation>
+        <v-form ref="form" lazy-validation>
           <v-text-field
             v-model="id"
-            :rules="idRules"
             label="Name Bill"
             required
             disabled

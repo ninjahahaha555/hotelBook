@@ -212,7 +212,7 @@
               block
               v-bind="attrs"
               v-on="on"
-              @click="typeDuty=2; logout()"
+              @click="typeDuty=2; logout();user='';pass='';"
             >
               <v-icon>mdi-lock-open</v-icon>
               Logout
@@ -425,7 +425,7 @@ export default {
             this.typeDuty = 0
             const payload = data
             this.$store.dispatch('setUser', payload)
-            console.log(payload)
+            // console.log(payload)
           })
         })
       db.collection('Employee')
@@ -440,7 +440,7 @@ export default {
             this.typeDuty = 1
             const payload = data
             this.$store.dispatch('setUser', payload)
-            console.log(payload)
+            // console.log(payload)
           })
         })
     },
@@ -454,7 +454,7 @@ export default {
             this.log = false
             const out = null
             this.$store.dispatch('logingOut', out)
-            console.log(out)
+            // console.log(out)
           })
         })
       db.collection('Employee')
@@ -466,7 +466,7 @@ export default {
             this.log = false
             const out = null
             this.$store.dispatch('logingOut', out)
-            console.log(out)
+            // console.log(out)
           })
         })
     },

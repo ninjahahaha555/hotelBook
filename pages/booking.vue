@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-form v-model="valid">
+    <v-form>
       <v-row align="center" justify="center">
         <v-card>
           <h1 align="center">
@@ -202,7 +202,6 @@ export default {
   store,
   data () {
     return {
-      valid: null,
       menu1: null,
       menu2: null,
       name: this.$store.getters.currentUser[0].name,
@@ -240,7 +239,7 @@ export default {
         roomType: this.$store.getters.roomPrice.rType
       }
       this.$store.dispatch('addBooking', book)
-      console.log(book)
+      // console.log(book)
     }
   }
 }
