@@ -6,13 +6,7 @@
           class=" headline font-weight-black"
           large
         >
-          ห้องขนาดกลาง
-        </v-card-text>
-        <v-card-text>
-          <p class="text-left font-weight-black">
-            เตียง 2 เตียง ห้องน้ำ 1 ห้อง จำนวนห้อง 1 ห้อง
-            ราคา 1,800 บาท/คืน
-          </p>
+          Sweet Room
         </v-card-text>
         <v-carousel
           cycle
@@ -29,6 +23,17 @@
         </v-carousel>
       </template>
     </template>
+    <v-card-text>
+      <p class="text-left font-weight-black">
+        ห้อง<br>
+        S101 : {{ s1[0] }}<br>
+        S102 : {{ s2[0] }}
+      </p>
+      <p class="text-left font-weight-black">
+        เตียง 2 เตียง ห้องน้ำ 1 ห้อง จำนวนห้อง 1 ห้อง
+        ราคา 1,800 บาท/คืน
+      </p>
+    </v-card-text>
     <v-card-text class="headline text-left font-weight-black">
       โรงแรมระดับ 4 ดาวพร้อม สระว่ายน้ำกลางแจ้ง และเชื่อมต่อกับศูนย์จัดการประชุม
     </v-card-text>
@@ -201,10 +206,15 @@
 </template>
 <script>
 import { store } from '~/store/index'
+import { db } from '~/plugins/firebaseConfig.js'
 export default {
   store,
   data () {
     return {
+      s1: [],
+      s2: [],
+      sweet1: 'S101',
+      sweet2: 'S102',
       log: this.$store.getters.log,
       items: [
         {
@@ -231,6 +241,9 @@ export default {
       ]
     }
   },
+  created () {
+    this.sRoom()
+  },
   methods: {
     submit () {
       const room = {
@@ -238,7 +251,31 @@ export default {
         rType: 'Sweet Room'
       }
       this.$store.dispatch('addRoomPrice', room)
-      console.log(room)
+      // console.log(room)
+    },
+    sRoom () {
+      const r = []
+      db.collection('Room')
+        .where('roomnum', '==', this.sweet1)
+        .onSnapshot((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            r.push(doc.data().status)
+            // console.log(r)
+          })
+          this.s1 = r
+          // console.log(this.s1)
+        })
+      const r2 = []
+      db.collection('Room')
+        .where('roomnum', '==', this.sweet2)
+        .onSnapshot((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            r2.push(doc.data().status)
+            // console.log(r)
+          })
+          this.s2 = r2
+          // console.log(this.s1)
+        })
     }
   }
 }

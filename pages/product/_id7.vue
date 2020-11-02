@@ -18,8 +18,12 @@
       </template>
     </template>
     <v-card-text class="headline text-left font-weight-black">
-      Normal Room
+      Normal Room 3
     </v-card-text>
+    <p class="text-left font-weight-black">
+      ห้อง<br>
+      N303 : {{ s1[0] }}
+    </p>
     <v-row justify="space-around ">
       <v-card class="ma-2" width="300">
         <div class="headline font-weight-bold">
@@ -189,10 +193,13 @@
 </template>
 <script>
 import { store } from '~/store/index'
+import { db } from '~/plugins/firebaseConfig.js'
 export default {
   store,
   data () {
     return {
+      s1: [],
+      n1: 'N303',
       log: this.$store.getters.log,
       items: [
         {
@@ -210,6 +217,9 @@ export default {
       ]
     }
   },
+  created () {
+    this.sRoom()
+  },
   methods: {
     submit () {
       const room = {
@@ -218,6 +228,19 @@ export default {
       }
       this.$store.dispatch('addRoomPrice', room)
       console.log(room)
+    },
+    sRoom () {
+      const r = []
+      db.collection('Room')
+        .where('roomnum', '==', this.n1)
+        .onSnapshot((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            r.push(doc.data().status)
+            // console.log(r)
+          })
+          this.s1 = r
+          console.log(this.s1)
+        })
     }
   }
 }

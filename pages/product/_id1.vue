@@ -20,6 +20,11 @@
     <v-card-text class="headline text-left font-weight-black">
       ดีลักซ์ วิลลา (Deluxe Villa)
     </v-card-text>
+    <p class="text-left font-weight-black">
+      ห้อง<br>
+      D201 : {{ s1[0] }}<br>
+      D202 : {{ s2[0] }}
+    </p>
     <v-row justify="space-around ">
       <v-card class="ma-2" width="300">
         <div class="headline font-weight-bold">
@@ -189,10 +194,15 @@
 </template>
 <script>
 import { store } from '~/store/index'
+import { db } from '~/plugins/firebaseConfig.js'
 export default {
   store,
   data () {
     return {
+      s1: [],
+      s2: [],
+      delux1: 'D201',
+      delux2: 'D202',
       log: this.$store.getters.log,
       items: [
         {
@@ -213,6 +223,9 @@ export default {
       ]
     }
   },
+  created () {
+    this.sRoom()
+  },
   methods: {
     submit () {
       const room = {
@@ -221,6 +234,30 @@ export default {
       }
       this.$store.dispatch('addRoomPrice', room)
       console.log(room)
+    },
+    sRoom () {
+      const r = []
+      db.collection('Room')
+        .where('roomnum', '==', this.delux1)
+        .onSnapshot((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            r.push(doc.data().status)
+            // console.log(r)
+          })
+          this.s1 = r
+          console.log(this.s1)
+        })
+      const r2 = []
+      db.collection('Room')
+        .where('roomnum', '==', this.delux2)
+        .onSnapshot((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            r2.push(doc.data().status)
+            // console.log(r)
+          })
+          this.s2 = r2
+          console.log(this.s1)
+        })
     }
   }
 }
