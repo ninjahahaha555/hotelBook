@@ -278,37 +278,15 @@
     >
       <template>
         <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-        <h1>Hostel</h1>
-        <v-tabs align-with-title>
-          <v-tab>
-            <nuxt-link
-              to="/"
-              style="text-decoration: none;"
-              class="white--text"
-            >
-              หน้าหลัก
-            </nuxt-link>
-          </v-tab>
-          <v-tab>
-            <nuxt-link
-              to="payment"
-              style="text-decoration: none;"
-              class="white--text"
-            >
-              ชำระเงิน
-            </nuxt-link>
-          </v-tab>
-          <v-tab>แผนที่</v-tab>
-          <v-tab>
-            <nuxt-link
-              to="contact"
-              style="text-decoration: none;"
-              class="white--text"
-            >
-              ติดต่อ
-            </nuxt-link>
-          </v-tab>
-        </v-tabs>
+        <h1>
+          <nuxt-link
+            to="/"
+            style="text-decoration: none;"
+            class="white--text"
+          >
+            LersurHostel
+          </nuxt-link>
+        </h1>
       </template>
 
       <v-toolbar-title v-text="title" />
@@ -371,9 +349,19 @@ export default {
         to: '/'
       },
       {
-        icon: 'mdi-basket',
+        icon: 'mdi-basket-fill',
         title: 'ห้องที่จอง',
         to: '/basket'
+      },
+      {
+        icon: 'mdi-cash-usd',
+        title: 'ชำระเงิน',
+        to: '/payment'
+      },
+      {
+        icon: 'mdi-phone',
+        title: 'ติดต่อ',
+        to: '/contact'
       }
       ],
       items: [
@@ -383,30 +371,26 @@ export default {
           to: '/'
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'ข้อมูลRegister',
-          to: '/dataRegister'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'ข้อมูลBooking',
+          icon: 'mdi-briefcase-check',
+          title: 'ข้อมูลการจอง',
           to: '/dataBook'
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'ข้อมูลพนักงาน',
-          to: '/dataEmployee'
-        },
-        {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-home-modern',
           title: 'ข้อมูลห้อง',
           to: '/dataRoom'
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'ข้อมูลรายได้',
-          to: '/dataIncome'
+          icon: 'mdi-account-circle',
+          title: 'ข้อมูลสมาชิค',
+          to: '/dataRegister'
+        },
+        {
+          icon: 'mdi-account-edit',
+          title: 'ข้อมูลพนักงาน',
+          to: '/dataEmployee'
         }
+
       ],
       miniVariant: false,
       right: true,
@@ -461,6 +445,8 @@ export default {
         })
     },
     logout () {
+      this.user = ''
+      this.pass = ''
       db.collection('MyRegister')
         .where('email', '==', this.$store.getters.currentUser[0].email)
         .where('password', '==', this.$store.getters.currentUser[0].password)

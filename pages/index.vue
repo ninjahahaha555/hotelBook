@@ -1,22 +1,25 @@
 <template>
-  <v-container>
-    <v-row>
-      <v-card class="ma-3 mx-auto">
-        <v-carousel
-          cycle
-          height="400"
-          hide-delimiter-background
-          show-arrows-on-hover
-        >
-          <v-carousel-item
-            v-for="(item,i) in items"
-            :key="i"
-            :src="item.src"
-            reverse-transition="fade-transition"
-            transition="fade-transition"
-          />
-        </v-carousel>
-      </v-card>
+  <v-card>
+    <v-card-text
+      class="red--text"
+    >
+      <h2>** กรุณา Login ก่อนทำการจองห้องพัก **</h2>
+    </v-card-text>
+    <v-row class="ma-3 mx-auto">
+      <v-carousel
+        cycle
+        height="400"
+        hide-delimiter-background
+        show-arrows-on-hover
+      >
+        <v-carousel-item
+          v-for="(item,i) in items"
+          :key="i"
+          :src="item.src"
+          reverse-transition="fade-transition"
+          transition="fade-transition"
+        />
+      </v-carousel>
     </v-row>
     <v-card-text
       class=" headline  text-center font-weight-black mt-10 text-decoration-underline"
@@ -29,7 +32,7 @@
         <template v-slot:default="{ hover }">
           <v-card
             class="ma-3 mx-auto"
-            max-width="450"
+            max-width="375"
           >
             <v-img
               class="white--text align-end"
@@ -72,7 +75,7 @@
         <template v-slot:default="{ hover }">
           <v-card
             class="ma-3 mx-auto"
-            max-width="450"
+            max-width="375"
           >
             <v-img
               class="white--text align-end"
@@ -124,7 +127,7 @@
         <template v-slot:default="{ hover }">
           <v-card
             class="ma-3 mx-auto mt-5"
-            max-width="450"
+            max-width="400"
           >
             <v-img
               class="white--text align-end"
@@ -168,7 +171,7 @@
         <template v-slot:default="{ hover }">
           <v-card
             class="ma-3 mx-auto mt-5"
-            max-width="450"
+            max-width="400"
           >
             <v-img
               class="white--text align-end"
@@ -213,7 +216,7 @@
         <template v-slot:default="{ hover }">
           <v-card
             class="ma-3 mx-auto"
-            max-width="450"
+            max-width="400"
           >
             <v-img
               class="white--text align-end"
@@ -259,7 +262,7 @@
         <template v-slot:default="{ hover }">
           <v-card
             class="ma-3 mx-auto"
-            max-width="450"
+            max-width="400"
           >
             <v-img
               class="white--text align-end"
@@ -365,7 +368,7 @@
         </v-row>
       </v-card-text>
     </v-row>
-  </v-container>
+  </v-card>
 </template>
 
 <script>

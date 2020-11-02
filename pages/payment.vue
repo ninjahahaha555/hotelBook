@@ -267,19 +267,29 @@
             </v-progress-circular>
           </v-row>
         </v-form>
-        <nuxt-link
-          v-if="a==true"
-          to="/"
-        >
+        <v-row align="center" justify="center">
           <v-btn
+            v-if="a==false"
             color="primary"
             class="ma-5 mr-4"
-            centered
+            disabled
             @click="submit;addData();"
           >
             submit
           </v-btn>
-        </nuxt-link>
+          <nuxt-link
+            v-if="a==true"
+            to="/"
+          >
+            <v-btn
+              color="primary"
+              class="ma-5 mr-4"
+              @click="submit;addData();"
+            >
+              submit
+            </v-btn>
+          </nuxt-link>
+        </v-row>
       </v-container>
     </v-card>
   </v-card>
