@@ -21,7 +21,7 @@
       Normal Room 4
     </v-card-text>
     <p class="text-left font-weight-black">
-      ห้อง<br>
+      ปัจจุบันห้อง<br>
       N304 : {{ s1[0] }}
     </p>
     <v-row justify="space-around ">
@@ -178,7 +178,7 @@
     </v-row>
     <div class="text-center mt-5">
       <v-btn
-        v-if="log == false || s1[0]=='ห้องไม่ว่าง'"
+        v-if="log == false"
         depressed
         block
         disabled
@@ -189,7 +189,7 @@
       </v-btn>
       <nuxt-link to="/booking">
         <v-btn
-          v-if="log == true & s1[0]=='ห้องว่าง'"
+          v-if="log == true"
           depressed
           block
           color="primary"

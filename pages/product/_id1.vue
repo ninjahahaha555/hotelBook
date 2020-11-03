@@ -21,7 +21,7 @@
       ดีลักซ์ วิลลา (Deluxe Villa)
     </v-card-text>
     <p class="text-left font-weight-black">
-      ห้อง<br>
+      ปัจจุบันห้อง<br>
       D201 : {{ s1[0] }}<br>
       D202 : {{ s2[0] }}
     </p>
@@ -179,7 +179,7 @@
     </v-row>
     <div class="text-center mt-5">
       <v-btn
-        v-if="log == false || s1[0]=='ห้องไม่ว่าง' & s2[0]=='ห้องไม่ว่าง'"
+        v-if="log == false"
         depressed
         block
         disabled
@@ -190,29 +190,7 @@
       </v-btn>
       <nuxt-link to="/booking">
         <v-btn
-          v-if="s1[0]=='ห้องว่าง' & log == true & s2[0]=='ห้องว่าง'"
-          depressed
-          block
-          color="primary"
-          @click="submit()"
-        >
-          Book
-        </v-btn>
-      </nuxt-link>
-      <nuxt-link to="/booking">
-        <v-btn
-          v-if="s1[0]=='ห้องไม่ว่าง' & log == true & s2[0]=='ห้องว่าง'"
-          depressed
-          block
-          color="primary"
-          @click="submit()"
-        >
-          Book
-        </v-btn>
-      </nuxt-link>
-      <nuxt-link to="/booking">
-        <v-btn
-          v-if="s1[0]=='ห้องว่าง' & log == true & s2[0]=='ห้องไม่ว่าง'"
+          v-if="log == true"
           depressed
           block
           color="primary"
