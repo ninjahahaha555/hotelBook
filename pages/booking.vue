@@ -219,11 +219,14 @@ export default {
       dialog: false
     }
   },
+  created () {
+    this.reset()
+  },
   methods: {
-    created () {
-      this.getData()
-    },
     reset () {
+      if (this.$store.state.log === false) {
+        this.$router.replace('/')
+      }
     },
     submit () {
       const book = {

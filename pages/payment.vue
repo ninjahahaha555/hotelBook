@@ -309,7 +309,15 @@ export default {
       value: 0
     }
   },
+  created () {
+    this.reset()
+  },
   methods: {
+    reset () {
+      if (this.$store.state.log === false) {
+        this.$router.replace('/')
+      }
+    },
     submit () {
       this.$refs.observer.validate()
     },

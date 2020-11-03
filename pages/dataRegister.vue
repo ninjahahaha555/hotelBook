@@ -44,8 +44,14 @@ export default {
   },
   created () {
     this.getData()
+    this.reset()
   },
   methods: {
+    reset () {
+      if (this.$store.state.log === false) {
+        this.$router.replace('/')
+      }
+    },
     getData () {
       db.collection('MyRegister').orderBy('timestamp').onSnapshot((querySnapshot) => {
         const data = []

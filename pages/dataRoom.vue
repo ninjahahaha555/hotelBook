@@ -246,9 +246,15 @@ export default {
   created () {
     this.initialize()
     this.getData()
+    this.reset()
   },
 
   methods: {
+    reset () {
+      if (this.$store.state.log === false) {
+        this.$router.replace('/')
+      }
+    },
     initialize () {
       this.textList = []
     },
